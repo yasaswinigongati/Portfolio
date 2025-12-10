@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yasaswini Gongati | Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #7dd3fc;
+      --accent-strong: #38bdf8;
+      --shadow: 0 10px 40px rgba(15, 23, 42, 0.35);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15), transparent 25%),
+        radial-gradient(circle at 80% 0%, rgba(16, 185, 129, 0.12), transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.1), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 32px 18px 64px;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .nameplate {
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--text);
+    }
+
+    .nav {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent-strong);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      text-align: left;
+    }
+
+    header {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 20px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+    }
+
+    .hero-main {
+      display: grid;
+      gap: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 46px);
+      letter-spacing: -0.02em;
+    }
+
+    .role {
+      color: var(--muted);
+      font-size: 16px;
+      margin-top: -6px;
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .meta-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-strong);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      text-decoration: none;
+      color: #0b1224;
+      background: linear-gradient(135deg, var(--accent-strong), #22d3ee);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    section {
+      margin-top: 30px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .skill-groups {
+      display: grid;
+      gap: 12px;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .skill-label {
+      font-weight: 700;
+      color: #0b1224;
+      padding: 6px 12px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-strong), #22d3ee);
+      border: 1px solid transparent;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: 17px;
+      color: var(--text);
+    }
+
+    .project-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 8px 0 10px;
+    }
+
+    .project-link {
+      color: var(--accent-strong);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-photo {
+      justify-self: center;
+      width: 200px;
+      height: 200px;
+      min-width: 200px;
+      /* Prevent squashing */
+      min-height: 200px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      /* Use border instead of padding for the ring */
+      background: linear-gradient(#0f172a, #0f172a) padding-box,
+        conic-gradient(from 120deg, #38bdf8, #22d3ee, #7dd3fc, #38bdf8) border-box;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+      overflow: hidden;
+      position: relative;
+      /* Ensure image fills the content box */
+      display: flex;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 50%;
+      /* Optional since overflow is hidden, but keeps it safe */
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        width: 100%;
+      }
+
+      .nav a {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 22px 14px 48px;
+      }
+
+      .hero {
+        padding: 22px;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        justify-self: start;
+        width: 150px;
+        height: 150px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="topbar">
+        <div class="nameplate">Yasaswini Gongati</div>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div class="hero-main">
+          <div class="hero-top">
+            <div>
+              <h1>Yasaswini Gongati</h1>
+              <div class="role">Python Developer & Full Stack Developer</div>
+            </div>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-icon" aria-hidden="true">📞</span>
+              <span>7207565208</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 1 1 13 0c0 5.5-6.5 11-6.5 11z"></path>
+                  <circle cx="12" cy="10" r="2.5"></circle>
+                </svg>
+              </span>
+              <span>Nandyal, Andhra Pradesh</span>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn" href="https://github.com/yasaswinigongati" target="_blank" rel="noopener"
+              aria-label="GitHub profile">GitHub</a>
+            <a class="btn secondary"
+              href="https://drive.google.com/file/d/1FvUX1wznmXYorX9kSWCw9s7ARKWVs_jz/view?usp=sharing"
+              aria-label="View resume">Resume</a>
+
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="images/profile.png" alt="Yasaswini Gongati" loading="lazy">
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div>
+        <h2 class="section-title">About</h2>
+
+      </div>
+      <div class="card">
+        <p style="margin: 0; color: var(--muted);">
+          Enthusiastic Full-Stack Developer passionate about web technologies, Python, and IoT. Eager to explore
+          emerging tech and transform ideas into practical solutions. Driven by curiosity and hands-on learning to build
+          innovative projects.
+        </p>
+      </div>
+      <div class="card">
+        <div class="section-desc" style="color: var(--text); font-weight: 600; margin-bottom: 4px;">Education</div>
+        <p style="margin: 0; color: var(--muted);">Bachelor of Technology - Computer Science and Engineering (IoT),
+          G.Pullaiah College of Engineering and Technology</p>
+      </div>
+      <div class="card">
+        <div class="section-desc" style="color: var(--text); font-weight: 600; margin-bottom: 6px;">Coding Profiles
+        </div>
+        <div class="skill-badges">
+          <a class="badge" href="https://leetcode.com/u/Mfo6YerVdq/" target="_blank" rel="noopener">LeetCode</a>
+          <a class="badge" href="https://www.codechef.com/users/g_yr2" target="_blank" rel="noopener">CodeChef</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div>
+        <h2 class="section-title">Skills</h2>
+
+      </div>
+      <div class="card">
+        <div class="skill-groups">
+          <div class="skill-row">
+            <span class="skill-label">Programming</span>
+            <span class="badge">Python</span>
+            <span class="badge">Java (basics)</span>
+            <span class="badge">DSA (medium)</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Technologies & Frameworks</span>
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">React.js</span>
+            <span class="badge">Node.js</span>
+            <span class="badge">Express.js</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Database</span>
+            <span class="badge">SQL</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Core CS</span>
+            <span class="badge">OOPS</span>
+            <span class="badge">DBMS</span>
+            <span class="badge">Operating Systems</span>
+            <span class="badge">Computer Networks</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div>
+        <h2 class="section-title">Projects</h2>
+
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="project-title">Chat Application</h3>
+          <p class="project-meta">Nov 2024 – Jan 2025</p>
+          <p class="project-meta">
+            Built a real-time chat app with instant messaging, secure JWT login,
+            online presence, profiles, and theme switching.
+          </p>
+          <p class="project-meta">
+            Technologies: MongoDB, Express.js, React.js, Node.js, Socket.io
+          </p>
+          <a class="project-link" href="https://github.com/yasaswinigongati/MernStack_chat-app" aria-label="view">View
+            project</a>
+        </div>
+        <div class="card">
+          <h3 class="project-title">ToDo App</h3>
+          <p class="project-meta">Aug 2025</p>
+          <p class="project-meta">
+            Add tasks, mark them complete, and delete them with a clean, responsive UI.
+          </p>
+          <p class="project-meta">Technologies: Python, Flask, HTML5, CSS3, SQLite</p>
+          <a class="project-link" href="https://github.com/yasaswinigongati/Todo-App" aria-label="view">View project</a>
+        </div>
+
+        <div class="card">
+          <h3 class="project-title">Echo Glove</h3>
+          <p class="project-meta">Oct 2024</p>
+          <p class="project-meta">
+
+          </p>
+          <p class="project-meta">
+            Smart wearable glove to help blind and visually impaired users
+            navigate safely with obstacle detection and gentle alerts.
+          </p>
+          <p class="project-meta">
+            Technologies: IoT, Arduino
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates">
+      <div>
+        <h2 class="section-title">Certificates</h2>
+
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="project-title">DSA</h3>
+          <p class="project-meta">Trained by Smart Interviews • Data Structures & Algorithms</p>
+          <a class="project-link" href="https://smartinterviews.in/certificate/ee065ed5"
+            aria-label="View certificate">View certificate</a>
+        </div>
+        <div class="card">
+          <h3 class="project-title">Full Stack Web Development</h3>
+          <p class="project-meta">Online Bootcamp • Backend + frontend delivery</p>
+          <a class="project-link" href="images/web development.png" aria-label="View certificate">View certificate</a>
+        </div>
+        <!-- <div class="card">
+          <h3 class="project-title">AWS Cloud Practitioner</h3>
+          <p class="project-meta">AWS • Cloud foundations & deployment</p>
+          <a class="project-link" href="#" aria-label="View certificate">View certificate</a>
+        </div> -->
+      </div>
+    </section>
+
+    <section id="contact">
+      <div>
+        <h2 class="section-title">Contact</h2>
+
+      </div>
+      <div class="card contact">
+        <a class="btn" href="gongatiyasaswini12@gmail.com">Email Me</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/yasaswini-g-892548258/">LinkedIn</a>
+        <a class="btn secondary" href="https://github.com/yasaswinigongati">GitHub</a>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>
